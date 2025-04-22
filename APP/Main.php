@@ -14,7 +14,7 @@
   </head>
   <body>
         <div class="corner-logo">
-        <img src="images/" alt="Corner Logo">
+        <img src="images/Logo.png" alt="Corner Logo">
         <span class="corner-text">GanApp</span>
     </div>
 
@@ -39,7 +39,7 @@
                     Login
                 </button>
             </form>
-            <a href="Create.php">Don't Have an Account?</a>
+            <a href="createPage.php">Don't Have an Account?</a>
 
   </body>
 </html>
