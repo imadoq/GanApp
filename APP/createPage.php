@@ -8,12 +8,13 @@
         $firstName = $data->Fname;
         $lastName = $data->Lname;
         $emailAddress = $data->email;
+        $studentNo = $data->studentNo;
         $password = password_hash($data->password, PASSWORD_DEFAULT); // Secure password hash
 
         $dateCreated = date('Y-m-d H:i:s');
         $dateUpdated = date('Y-m-d H:i:s');
-        $stmt = $conn->prepare("INSERT INTO tbl_userinformation (firstName, lastName, emailAddress, password, dateCreated, dateUpdated) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$firstName, $lastName, $emailAddress, $password, $dateCreated, $dateUpdated]);
+        $stmt = $conn->prepare("INSERT INTO tbl_userinformation (username, firstName, lastName, emailAddress, password, studentNo, dateCreated, dateUpdated) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$username, $firstName, $lastName, $emailAddress, $password, $studentNo, $dateCreated, $dateUpdated]);
     
     
         echo "Registration Successful!";
