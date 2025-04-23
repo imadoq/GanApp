@@ -1,26 +1,47 @@
 <?php
-    session_start();
-    include 'dbconnection.php'; // Include your database connection file
+session_start();
+include 'dbConnection.php'; // Include your database connection file
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $data = json_decode($_POST['myData']);
-    
-        $firstName = $data->Fname;
-        $lastName = $data->Lname;
-        $emailAddress = $data->email;
-        $studentNo = $data->studentNo;
-        $password = password_hash($data->password, PASSWORD_DEFAULT); // Secure password hash
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode($_POST['myData']);
 
-        $dateCreated = date('Y-m-d H:i:s');
-        $dateUpdated = date('Y-m-d H:i:s');
-        $stmt = $conn->prepare("INSERT INTO tbl_userinformation (username, firstName, lastName, emailAddress, password, studentNo, dateCreated, dateUpdated) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$username, $firstName, $lastName, $emailAddress, $password, $studentNo, $dateCreated, $dateUpdated]);
+    // Sanitize and assign
+    $username = $data->username;
+    $firstName = $data->Fname;
+    $lastName = $data->Lname;
+    $emailAddress = $data->email;
+    $studentNo = $data->studentNo;
+    $password = password_hash($data->password, PASSWORD_DEFAULT);
+
+    $dateCreated = date('Y-m-d H:i:s');
+    $dateUpdated = date('Y-m-d H:i:s');
+
+    // Check if username or email already exists
+    $checkStmt = $conn->prepare("SELECT * FROM tbl_userinformation WHERE username = ? OR emailAddress = ?");
+    $checkStmt = $conn->prepare("SELECT * FROM tbl_userinformation WHERE username = ?");
+    $checkStmt->execute([$username]);
+    $userExists = $checkStmt->fetch();
     
-    
-        echo "Registration Successful!";
+    if ($userExists) {
+        echo "Username already exists!";
         exit;
     }
+    
+    // Proceed with inserting the user
+    $stmt = $conn->prepare("INSERT INTO tbl_userinformation 
+        (username, firstName, lastName, emailAddress, password, studentNo, dateCreated, dateUpdated) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+    if ($stmt->execute([$username, $firstName, $lastName, $emailAddress, $password, $studentNo, $dateCreated, $dateUpdated])) {
+        echo "Registration Successful!";
+    } else {
+        echo "An error occurred during registration.";
+    }
+    exit;
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
