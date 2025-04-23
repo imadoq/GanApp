@@ -50,7 +50,50 @@
                     <th><i class="fa-solid fa-list-check"></i> Action</th>
                 </tr>
             </thead>
-                <tbody>
+            <tbody>
+                <?php 
+                    if (isset($events) && method_exists($events, 'resetCounter') && method_exists($events, 'getLength') && method_exists($events, 'nextEvent')) {
+                $events->resetCounter();
+                for($i = 0; $i < $events->getLength(); $i++) { 
+                    $event = $events->nextEvent();
+                    ?>
+                    <tr class="event-row">
+                        <td><?php echo htmlspecialchars($event['name'] ?? ''); ?></td>
+                        <td><?php echo htmlspecialchars($event['description'] ?? ''); ?></td>
+                        <td><?php echo htmlspecialchars($event['orgID'] ?? ''); ?></td>
+                        <td><?php echo htmlspecialchars($event['datetime'] ?? ''); ?></td>
+                        <td><?php echo htmlspecialchars($event['venue'] ?? ''); ?></td>
+                        <td>
+                            <?php if(isset($event['status']) && $event['status'] == 'approved'): ?>
+                                <div class="status-approved">
+                                    <i class="fas fa-check-circle"></i> Approved
+                                </div>
+                            <?php elseif(isset($event['status']) && $event['status'] == 'rejected'): ?>
+                                <div class="status-rejected">
+                                    <i class="fas fa-times-circle"></i> Rejected
+                                </div>
+                            <?php else: ?>
+                                <div class="action-dropdown">
+                                    <form action="approveEvent.php" method="post" style="display: inline;">
+                                        <input type="hidden" value="<?php echo htmlspecialchars($event['name'] ?? ''); ?>" name="eventName">
+                                        <button type="submit" class="approve-btn">
+                                                <i class="fas fa-check"></i> Approve
+                                            </button>
+                                        </form>
+                                    <form action="rejectEvent.php" method="post" style="display: inline;">
+                                        <input type="hidden" value="<?php echo htmlspecialchars($event['name'] ?? ''); ?>" name="eventName">
+                                        <button type="submit" class="reject-btn">
+                                                <i class="fas fa-times"></i> Reject
+                                            </button>
+                                        </form>
+                                </div>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <?php 
+                        }
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
