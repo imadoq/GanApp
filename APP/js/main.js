@@ -1,7 +1,7 @@
 function sendJSON(){
     var jsonData = {
-        username: document.getElementById("username").value,
-        password: document.getElementById("password").value,
+        username: document.getElementById("username").value.trim(),
+        password: document.getElementById("password").value.trim(),
     }
 
     var jsonString = JSON.stringify(jsonData);

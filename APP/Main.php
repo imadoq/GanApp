@@ -2,12 +2,30 @@
 session_start();
 include 'dbConnection.php'; // Your database connection
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['myData'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = json_decode($_POST['myData'], true);
-    $username = $data->username;
-    $password = $data->password;
+    $username = $data['username'];
+    $password = $data['password']; 
 
-    
+    $stmt = $conn->prepare("SELECT * FROM tbl_userinformation WHERE username = ?");
+    $stmt ->bind_param("s", $username);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        if (password_verify($password, $user['password'])) {
+            echo "Login successful!";
+        } else {
+            echo "Invalid password!";
+        }
+    } else {
+        echo "Username not found!";
+    }
+
+    $stmt->close();
+    $conn->close();
     exit();
 }
 ?>
