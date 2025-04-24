@@ -1,0 +1,111 @@
+body {
+    background-color: darkkhaki;
+}
+
+.profile-picture i {
+    font-size: 100px; 
+    color: darkkhaki; 
+}
+
+.main-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+}
+
+.user-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 16px;
+    background-color: white;
+    max-width: 400px;
+    width: 80%;
+    max-width: 80%;
+    
+}
+
+.registration-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+    padding: 16px;
+    /*border: 2px solid grey;*/
+    border-radius: 16px;
+    background-color: white;
+    width: 80%;
+    max-width: 80%;
+}
+
+.event-name,
+.event-datetime,
+.event-venue,
+.event-org,
+.event-info {
+    width: 100%;
+}
+
+.icon-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    
+}
+
+.icon-group i {
+    margin-right: 10px;
+    font-size: 18px;
+    color: grey;
+    min-width: 24px;
+    text-align: center;
+}
+
+.icon-group input,
+.icon-group textarea {
+    flex: 1;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid grey;
+    font-size: 16px;
+    width: 100%;
+}
+
+.char-counter {
+    align-self: flex-start;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.registration-container input {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid grey;
+    font-size: 16px;
+}
+
+textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid grey;
+    font-size: 16px;
+}
+
+.submit-button {
+    text-decoration: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+}
+
+.submit-button:hover {
+    background-color: yellow;
+}
