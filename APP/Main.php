@@ -6,6 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['myData'])) {
     $data = json_decode($_POST['myData'], true);
     $username = $data->username;
     $password = $data->password;
+
+    
     exit();
 }
 ?>

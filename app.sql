@@ -72,10 +72,12 @@ CREATE TABLE `tbl_roles` (
 
 CREATE TABLE `tbl_userinformation` (
   `userID` int(11) NOT NULL,
+  `username` varchar(150) NOT NULL
   `firstName` varchar(150) NOT NULL,
   `lastName` varchar(150) NOT NULL,
-  `contactNumber` varchar(12) NOT NULL,
   `emailAddress` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `studentNo` int(11) NOT NULL,
   `roleID` int(11) NOT NULL,
   `dateCreated` datetime NOT NULL,
   `dateUpdated` datetime NOT NULL
