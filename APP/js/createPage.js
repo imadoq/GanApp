@@ -31,7 +31,7 @@ function sendJSON(){
             if (result.includes("Registration Successful")) {
                 alert(result);
                 // Redirect after alert
-                window.location.href = "Main.php"; // your login page
+                window.location.href = "Main.php";
             } else {
                 alert(result);
             }

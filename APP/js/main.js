@@ -13,13 +13,13 @@ function sendJSON(){
             if (result.includes("Login Successful")) {
                 alert(result);
                 // Redirect after alert
-                window.location.href = "Userpage.php"; // your login page
+                window.location.href = "Userpage.php";
             } else {
                 alert(result);
             }
         },
         error: function(result){
-            alert("An error occurred. Please try again.");
+
         }
     })
 }

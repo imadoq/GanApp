@@ -1,20 +1,28 @@
 <?php
-    //session_start();
+session_start();
+include 'dbConnection.php'; // Your database connection
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['myData'])) {
+    $data = json_decode($_POST['myData'], true);
+    $username = $data->username;
+    $password = $data->password;
+    exit();
+}
 ?>
 
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <title>RegForm</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src ="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src ="js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-  </head>
-  <body>
-        <div class="corner-logo">
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div class="corner-logo">
         <img src="images/Logo.png" alt="Corner Logo">
         <span class="corner-text">GanApp</span>
     </div>
@@ -26,21 +34,20 @@
             </div>
             <h1>GanApp</h1>
             <p class="subtitle">Event Tracker</p>
-            
-            <form method="" action="">
+
+            <form>
                 <div class="input-container">
                     <i class="fas fa-envelope input-icon"></i>
-                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
                 </div>
                 <div class="input-container">
                     <i class="fas fa-lock input-icon"></i>
-                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                 </div>
-                <button type="button" class="submit-btn" onclick="sendJSON()">
-                    Login
-                </button>
+                <button type="button" class="submit-btn" onclick="sendJSON()">Login</button>
             </form>
             <a href="createPage.php">Don't Have an Account?</a>
-
-  </body>
+        </div>
+    </div>
+</body>
 </html>
