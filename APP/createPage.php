@@ -1,5 +1,5 @@
 <?php
-/*session_start();
+/*session_start(); // The whole php is commenteed remove the comment to work
 include 'dbConnection.php'; // Include your database connection file
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
