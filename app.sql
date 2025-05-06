@@ -76,7 +76,7 @@ CREATE TABLE `tbl_userinformation` (
   `firstName` varchar(150) NOT NULL,
   `lastName` varchar(150) NOT NULL,
   `emailAddress` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `studentNo` int(11) NOT NULL,
   `roleID` int(11) NOT NULL,
   `dateCreated` datetime NOT NULL,
