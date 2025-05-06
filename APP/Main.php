@@ -15,10 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
-            echo "Login successful!";
+        $hashedPassword = $user['password'];
+        if (password_verify($password, $hashedPassword)) {
+            echo "Login Successful";
         } else {
-            echo "Invalid password!";
+            echo "Incorrect password!";
         }
     } else {
         echo "Username not found!";
