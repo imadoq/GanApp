@@ -1,5 +1,5 @@
 <?php
-include("userPageFunction.php");
+/*include("userPageFunction.php");
 
     try {
         if($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -50,110 +50,132 @@ include("userPageFunction.php");
     } catch(Exception $e) {
         echo "An error occurred: " . $e->getMessage();
         exit;
-    }
+    }*/
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/userPage.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="UserPageStyle.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Bootstrap demo</title>
-  </head>
-
-  <body>
-    <nav class="navbar navbar-expand-lg" style="background-color: beige;">
-        <div class="container-fluid">
-
-            <i class="fas fa-user-circle"></i>
-            <!--
-            <img src="images/logo.png" alt="Corner Logo">
-            -->
+    <title>GanApp - Event Registration</title>
+</head>
+<body>
+    <!-- Mobile toggle button -->
+    <button class="toggle-sidebar">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="app-header">
+            <img class="app-logo" src="images/Logo.png" alt="GanApp Logo">
+            <span class="app-title">GanApp</span>
+        </div>
         
-            <a class="navbar-brand" href="#">GanAPP</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
+        <ul class="nav-menu">
+            <li class="nav-item active" data-tab="event-registration">Event Registration</li>
+            <li class="nav-item" data-tab="my-events">My Events</li>
+        </ul>
+    </div>
+    
+    <!-- Content Area -->
+    <div class="content-area">
+        <!-- Event Registration Tab -->
+        <div class="tab-content active" id="event-registration">
+            <div class="table-header">
+                <h2 class="table-title"><i class="fas fa-user"></i>Welcome, User</h2>
+            </div>
+            
+            <div class="registration-container">
+                <h3 class="form-title">Event Registration Form</h3>
                 
-                <!--
-                <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-                </li>
-                -->
-
-            </ul>
+                <div class="form-group">
+                    <label for="eventName">Event Name</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-pen"></i>
+                        <input type="text" id="eventName" name="event" placeholder="Event Name" maxlength="50" required>
+                    </div>
+                    <div id="eventNameCounter" class="char-counter">50/50</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="eventDateTime">Date and Time</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="datetime-local" id="eventDateTime" name="eventdatetime" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="eventVenue">Event Venue</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" id="eventVenue" name="eventvenue" placeholder="Event Venue" maxlength="50" required>
+                    </div>
+                    <div id="eventVenueCounter" class="char-counter">50/50</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="orgID">Organization ID</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user-friends"></i>
+                        <input type="number" id="orgID" name="orgid" placeholder="Organization ID" min="1" max="11" maxlength="11" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="eventInfo">Event Information</label>
+                    <div class="input-wrapper textarea-wrapper">
+                        <i class="fas fa-info-circle info-icon"></i>
+                        <textarea id="eventInfo" name="eventinfo" placeholder="Event Information" rows="4" maxlength="250" required></textarea>
+                    </div>
+                    <div id="eventInfoCounter" class="char-counter">250/250</div>
+                </div>
+                
+                <button class="submit-button" type="submit" onclick="sendAddData()">
+                    <i class="fas fa-paper-plane"></i> Submit
+                </button>
             </div>
         </div>
-    </nav>
-
-    <div class="main-body">
-
-    <div class="user-container">
-        <div class ="profile-picture">
-            <i class="fas fa-user-circle"></i>
+        
+        <!-- My Events Tab -->
+        <div class="tab-content" id="my-events">
+            <div class="table-header">
+                <h2 class="table-title"><i class="fas fa-calendar-check"></i>My Events</h2>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="search-input" id="my-events-search" placeholder="Search">
+                </div>
+            </div>
+            
+            <table class="data-table" id="my-events-table">
+                <thead>
+                    <tr>
+                        <th><i class="fa-regular fa-calendar-days"></i> Event Name</th>
+                        <th><i class="fa-solid fa-newspaper"></i> Description</th>
+                        <th><i class="fas fa-id-card"></i> Org ID</th>
+                        <th><i class="fa-regular fa-clock"></i> Date/Time</th>
+                        <th><i class="fas fa-map-marker-alt"></i> Venue</th>
+                        <th><i class="fa-solid fa-circle-info"></i> Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- This will be populated with user's events -->
+                </tbody>
+            </table>
         </div>
-        <div class="welcome-header">
-                <h1 class="welcome-text">Welcome, User</h1>    
-        </div>
-    </div>
-
-    <br>
-
-    <div class="registration-container">
-        <h2>Event Registration</h2>
-        <br>
-
-        <div class="event-name icon-group">
-            <i class="fas fa-pen"></i>
-            <input type="text" id="eventName" name="event" placeholder="Event Name" maxlength="50" required>
-        </div>
-            <div id="eventNameCounter" class="char-counter">50 characters remaining</div>
-        <br>
-
-        <div class="event-datetime icon-group">
-            <i class="fas fa-calendar-alt input-icon"></i>
-            <input type="datetime-local" id="eventDateTime" name="eventdatetime" required>
-        </div>
-        <br>
-
-        <div class="event-venue icon-group">
-            <i class="fas fa-map-marker-alt input-icon"></i>
-            <input type="text" id="eventVenue" name="eventvenue" placeholder="Event Venue" maxlength="50" required>
-        </div>
-            <div id="eventVenueCounter" class="char-counter">50 characters remaining</div>
-        <br>
-
-        <div class="event-org icon-group">
-            <i class="fas fa-user-friends input-icon"></i>
-            <input type="number" id="orgID" name="orgid" placeholder="Organization ID" min="1" max="11" maxlength="11" required/>
-        </div>
-        <br>
-
-        <div class="event-info icon-group">
-            <i class="fas fa-info-circle"></i>
-            <textarea id="eventInfo" name="eventinfo" placeholder="Event Information" rows="4" maxlength="250" required></textarea>
-        </div>
-            <div id="eventInfoCounter" class="char-counter">250 characters remaining</div>
-        <br>
-
-        <button class="submit-button" type="submit" onclick="sendAddData()">Submit</button>
-    </div>
-
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-    <script src="UserPageScript.js"></script>
-  </body>
+    <script src="js/UserPageScript.js"></script>
+</body>
 </html>
-
 
