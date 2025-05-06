@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 include 'dbConnection.php'; // Include your database connection file
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -38,7 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "An error occurred during registration.";
     }
     exit;
-}
+} */
+
 ?>
 
 
@@ -48,71 +49,72 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <script src ="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-    <script src ="js/createPage.js"></script>
-    <title>GanApp - Registration</title>
+    <link rel="stylesheet" href="css/createPage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="js/createPage.js"></script>
+    <title>GanApp - Create Account</title>
 </head>
 <body>
-    <div class="corner-logo">
-        <img src="images/logo.png" alt="Corner Logo">
-        <span class="corner-text">GanApp</span>
-    </div>
-
     <div class="container">
-        <div class="content">
-            <form id="login" class="fade-in-up" action="" method="post">
-                <div class="login-icon">
-                    <i class="fas fa-user-plus"></i>
-                </div>
-                <h1>Create Account</h1>
+        <div class="form-section">
+            <div class="logo">
+                <img src="images/Logo.png" alt="GanApp Logo">
+                <h1>GanApp</h1>
+            </div>
+
+            <div class="form-content">
+                <h2>Create an account</h2>
                 <p class="subtitle">Please fill in your details to register</p>
 
-                <div class="input-container">
-                    <i class="fas fa-user input-icon"></i>
-                    <input type="text" name="username" placeholder="Username" required>
-                </div>
+                <form id="register-form">
 
-                <div class="input-container">
-                    <i class="fas fa-user input-icon"></i>
-                    <input type="text" name="Fname" placeholder="First Name" required>
-                </div>
 
-                <div class="input-container">
-                    <i class="fas fa-user input-icon"></i>
-                    <input type="text" name="Lname" placeholder="Last Name" required>
-                </div>
+                    <div class="input-row">
+                        <div class="input-container">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" name="Fname" placeholder="First Name" required>
+                        </div>
 
-                <div class="input-container">
-                    <i class="fas fa-user input-icon"></i>
-                    <input type="text" name="studentNo" placeholder="Student Number" required>
-                </div>
-                
-                <div class="input-container">
-                    <i class="fas fa-envelope input-icon"></i>
-                    <input type="email" name="email" placeholder="Email Address" required>
-                </div>
-                
-                <div class="input-container">
-                    <i class="fas fa-lock input-icon"></i>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <i class="fas fa-eye toggle-password"></i>
-                </div>
-                
-                <div class="input-container">
-                    <i class="fas fa-lock input-icon"></i>
-                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-                </div>
-                
-                <button type="button" class="submit-btn" onclick= "sendJSON()">Create Account</button>
-                
-                <p style="margin-top: 20px;">
-                    Already have an account? <a href="Main.php">Login here</a>
-                </p>
-            </form>
+                        <div class="input-container">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" name="Lname" placeholder="Last Name" required>
+                        </div>
+                    </div>
+
+                    <div class="input-container">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                    </div>
+
+                    <div class="input-container">
+                        <i class="fas fa-phone input-icon"></i>
+                        <input type="text" name="studentNo" placeholder="Contact No." required>
+                    </div>
+                    
+                    <div class="input-container">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                    
+                    <div class="input-container">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    </div>
+                    
+                    <button type="button" class="submit-btn" onclick="sendJSON()">Sign up</button>
+                    
+                    <p class="login-link">
+                        Already have an account? <a href="Main.php">Log in</a>
+                    </p>
+                </form>
+            </div>
         </div>
-    </div>
-
+        <div class="pattern-background">
+            <!-- Pattern background will be created with CSS -->
+        </div>
     </div>
 </body>
 </html>
